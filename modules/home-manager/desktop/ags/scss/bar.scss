@@ -1,0 +1,77 @@
+.bar {
+
+	.workspaces button {
+		all:unset;
+		margin: $margin;
+		.indicator {
+			font-size: 0;
+			background-color: transparentize($fg, 0.8);
+			min-width: 12px;
+			min-height: 12px;
+			border-radius: 8px;
+			transition: 100ms linear;
+		}
+
+		&.has-windows .indicator {
+			background-color: transparentize($fg, 0.2);
+			min-height: 16px;
+			min-width: 16px;
+		}
+
+		&.active .indicator{
+			background-color: $accent;
+			min-height: 16px;
+			min-width: 24px;
+		}
+
+	}
+	
+	.clock {
+		color: $accent;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.hardware-bar {
+		all:unset;
+		box {
+			margin: $margin;
+			circular-progress {
+				color: transparentize($fg, 0.2);
+				font-size: 4px;
+				min-height: 24px;
+				min-width: 24px;
+				
+				label {
+					background-color: transparentize($fg, 0.2);
+					font-size: 0;
+					border-radius: 50%;
+					margin: 8px;
+				}
+				&.battery {
+					color: $accent;
+					label {
+						background-color: $accent;
+						&.charging {
+							animation: colorPulse 2s infinite;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes colorPulse {
+	0% {
+		background-color: $accent;
+	}
+
+	50% {
+		background-color: transparent;
+	}
+
+	100% {
+		background-color: $accent;
+	}
+}
