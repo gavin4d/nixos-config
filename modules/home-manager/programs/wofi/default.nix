@@ -2,10 +2,10 @@
 
 {
   home.packages = with pkgs; [
-    wofi,
+    wofi
   ];
 
-  home.file.".config/wofi/config".text = import ./config;
-  home.file.".config/wofi/colors".text = import ./colors;
-  home.file.".config/wofi/style.css".text = import ./style.css;
+  home.file.".config/wofi/config".source = ./config;
+  home.file.".config/wofi/colors".source = ./colors;
+  home.file.".config/wofi/style.css".source = ./style.css;
 }

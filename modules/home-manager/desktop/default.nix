@@ -1,4 +1,5 @@
 [
   ./hyprland
   ./ags
+  ./utils
 ]

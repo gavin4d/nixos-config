@@ -1,15 +1,26 @@
 import { Bar } from "./modules/topbar.js";
 import Dashboard from "./modules/widgets/dashboard.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
-import { exec } from 'resource:///com/github/Aylur/ags/utils.js';
+import { VolumeOSD } from './modules/on-screen/volume.js'
+import { exec, execAsync, timeout } from 'resource:///com/github/Aylur/ags/utils.js';
 import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
+import { notificationPopup } from './modules/on-screen/notificationPopup.js';
 
 const scss = `${App.configDir}/scss/main.scss`
 const css = `${App.configDir}/style.css`
 
 exec(`sassc ${scss} ${css}`)
 
-//exec('swww img ~/Downloads/1291412.jpg');
+//execAsync(['swww', 'img', '~/Downloads/1291412.jpg']);
+
+timeout(1000, () => execAsync([
+    'notify-send',
+    'Notification Popup Example',
+    'Lorem ipsum dolor sit amet, qui minim labore adipisicing ' +
+    'minim sint cillum sint consectetur cupidatat.',
+    '-A', 'Cool!',
+    '-i', 'info-symbolic',
+]));
 
 export default {
     style: App.configDir + '/style.css',
@@ -17,7 +28,9 @@ export default {
     windows: [
         Bar(),
         Dashboard(),
-    ].flat(1),
+        notificationPopup,
+        VolumeOSD(),
+    ],
 };
 
 globalThis.getNot = () => Notifications;

@@ -1,0 +1,135 @@
+/*=============== TRANSPARENT ===============*/
+
+#main-window {
+  --lwt-accent-color: transparent !important;
+  --toolbar-bgcolor: transparent !important;
+  --tabpanel-background-color: transparent !important;
+}
+
+/*=============== FIREFOX ===============*/
+
+:root {
+  --vt-ani-time: 150ms;
+  --vt-ani-delay: 150ms;
+  --vt-ani-shape: ease-in-out;
+  --vt-tab-width-thin: 40px;
+  --vt-tab-width-wide: 200px;
+}
+
+/* hide navigation bar when it is not focused; use Ctrl+L to get focus */
+#main-window:not([customizing])[chromehidden=""] #nav-bar:not(:focus-within):not(:hover) {
+  margin-top: -41px;
+}
+
+#nav-bar {
+  margin-top: 0px;
+  transition: var(--vt-ani-time) margin-top var(--vt-ani-shape) 10ms !important;
+}
+
+#PersonalToolbar:not([customizing]){
+  position: relative;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--vt-ani-time) ease var(--vt-ani-delay) !important;
+  z-index: 1;
+}
+
+#nav-bar:focus-within + #PersonalToolbar, #nav-bar:hover #PersonalToolbar{
+  transition-delay: var(--vt-ani-delay) !important;
+  transform: scaleY(1);
+}
+
+/*=============== VERTICAL TABS ==============*/
+
+#TabsToolbar > *:not(.toolbar-items) {
+  display: none;
+}
+
+#tabbrowser-arrowscrollbox {
+  height: fit-content;
+}
+
+.scrollbox-clip [part="scrollbox"] * {
+  display: flex;
+  flex-direction: column !important;
+}
+
+#scrollbutton-down, #scrollbutton-up {
+  display: none;
+}
+
+#tabbrowser-arrowscrollbox spacer {
+  display: none;
+}
+
+#tabbrowser-arrowscrollbox-periphery {
+  display: none;
+}
+
+
+#TabsToolbar-customization-target {
+  height: calc(100% - 40px);
+  flex-direction: column;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: var(--vt-tab-width-thin);
+  transition: width var(--vt-ani-time) var(--vt-ani-shape) var(--vt-ani-delay), top var(--vt-ani-time) var(--vt-ani-shape) 10ms;
+}
+
+/*#main-window:not([customizing])[chromehidden=""]:has(#nav-bar:not(:focus-within):not(:hover)) #TabsToolbar-customization-target {
+  top: 0px;
+  height: 100%;
+}*/
+
+#TabsToolbar-customization-target:hover { 
+  width: var(--vt-tab-width-wide);
+}
+
+#tabbrowser-tabs {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+tab {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+  min-width: 0px !important;
+  transition: width var(--vt-ani-time) var(--vt-ani-shape) var(--vt-ani-delay), min-width 100ms ease-out, max-width 100ms ease-out !important; 
+  width: var(--vt-tab-width-thin);
+}
+
+#TabsToolbar-customization-target:hover tab {
+  width: var(--vt-tab-width-wide);
+}
+
+tab:not(:hover) .tab-close-button {
+  display: none;
+}
+
+#tabbrowser-tabs .scrollbar {
+  display: none;
+}
+
+#new-tab-button {
+  display: inherit !important;
+}
+
+#alltabs-button, #firefox-view-button {
+  display: none;
+}
+
+#browser {
+  margin-left: var(--vt-tab-width-thin); /* TODO: popup windows */
+  transition: margin-left var(--vt-ani-time) var(--vt-ani-shape) var(--vt-ani-delay);
+}
+
+#navigator-toolbox:has(#TabsToolbar-customization-target:hover) + #browser {
+  margin-left: var(--vt-tab-width-wide);
+}
+
+
+

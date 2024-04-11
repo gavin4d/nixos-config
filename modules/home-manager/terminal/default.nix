@@ -2,6 +2,7 @@
   ./fish
   ./kitty
   #./nvim
-  #./lf
+  ./lf
   ./utils
+  ./helix
 ]

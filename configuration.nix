@@ -20,7 +20,10 @@
   };
   
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+#  networking.wireless = {
+#  	enable = true;  # Enables wireless support via wpa_supplicant.
+#	userControlled.enable = true;
+#	};
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -69,38 +72,15 @@
   environment.systemPackages = with pkgs; [
     # general
     #fprintd-tod
-    #usbutils
-    firefox
-    discord
-    #unzip
-    #lf
-    krita
-    spotify
-    #electron
-    #obsidian
     xdg-desktop-portal
-    
-    # terminal    
-    vim
-
-    # desktop
-    wofi
-    networkmanagerapplet
-    playerctl
-    #polkit-kde-agent
     #qt5ct
     #pkgs.wl-clipboard
     #brightnessctl
-    sysstat
     #bc
     #sassc
     #systemsettings
-    acpi
-    glib
-    swww
-    upower
+    #glib
     #libimobiledevice-glue
-    lm_sensors
     #plasma-theme-switcher
     #plasma-pa
 
@@ -108,7 +88,7 @@
     #nwg-look
     #libsForQt5.qtstyleplugin-kvantum
     #lightly-qt
-    vscode
+    #vscode
     #pywal
 ];
 
@@ -121,6 +101,8 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       #font-awesome_5
+      noto-fonts-cjk-sans
+      nasin-nanpa
     ];
     fontDir.enable = true;
   };
@@ -133,7 +115,6 @@
       extraPackages = with pkgs; [
         mesa_drivers
         intel-ocl
-        beignet
         vaapiIntel
         vaapiVdpau
         libvdpau-va-gl

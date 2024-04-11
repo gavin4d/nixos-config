@@ -8,6 +8,22 @@
     wl-clipboard
   ];
 
+  programs = {
+    bash = {
+      initExtra = ''
+        if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+           exec  Hyprland
+        fi
+      '';
+    };
+    fish = {
+      loginShellInit = ''
+        set TTY1 (tty)
+        [ "$TTY1" = "/dev/tty1" ] && exec Hyprland
+      '';
+    };
+  };
+  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -56,7 +72,7 @@
           "$mainMod , F, fullscreen"
           "$mainMod, space, togglefloating"
           "$mainMod, J, togglesplit" # dwindle
-          "$alttKey $shiftKey, A, pin" # Keep above
+          "$mainMod $shiftKey, A, pin" # Keep above
           "$mainMod, left, movefocus, l"
           "$mainMod, right, movefocus, r"
           "$mainMod, up, movefocus, u"
@@ -83,7 +99,7 @@
           ", xf86monbrightnessdown, exec, brightnessctl set 5%-"
           # applications
           "$mainMod, return, exec, kitty"
-          ",Print, exec, grim -g \"$(slurp)\" - | wl-copy -t image/png"
+          ",Print, exec, grim -g \"$(slurp -d -c 00000000 -b 00aaaa22)\" - | wl-copy -t image/png"
 
           # menus
           "$mainMod, f1, exec, ags -r \"showLeftMenu()\""
@@ -130,18 +146,24 @@
 
       
       decoration = {
+          
+          active_opacity = 1.0;
+          inactive_opacity = 1.0;
+          fullscreen_opacity = 1.0;
           # Blur rules
-          rounding = 13;
+          rounding = 8;
       
           blur = {
               enabled = true;
-              size = 1;
-              passes = 3;
-              noise = 0.0117;
+              size = 4;
+              passes = 1;
+              noise = 0.05;
               new_optimizations = true;
-              brightness = 1.0;
-              ignore_opacity = false;
+              brightness = 0.4;
+              ignore_opacity = true;
               xray = false;
+              popups = true;
+              popups_ignorealpha = 1;
           };
       
           # blur_xray = false
@@ -156,6 +178,10 @@
           dim_strength = 0.1;
           dim_special = 0;
       };
+
+      windowrule = [
+        "opacity 0.999,^(firefox)$"
+      ];
       
       
       animations = {
@@ -218,8 +244,7 @@
       };
       
       misc = {
-          disable_hyprland_logo = false;
-          force_hypr_chan = true;
+          disable_hyprland_logo = true;
       };
 
 #####################################################################################
@@ -234,6 +259,8 @@
           "killall xfce4-notifyd"
           "ags"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+          "swww init"
+          "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/2.gif"
         ];
 
     };

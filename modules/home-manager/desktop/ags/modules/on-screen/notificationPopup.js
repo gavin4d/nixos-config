@@ -95,6 +95,7 @@ export const notificationPopup = Widget.Window({
     child: Widget.Box({
         class_name: 'notifications',
         vertical: true,
+        vexpand: true,
         children: Notifications.bind('popups').transform(popups => {
             return popups.map(Notification);
         }),

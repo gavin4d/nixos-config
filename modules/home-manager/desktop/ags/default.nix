@@ -3,6 +3,7 @@
   imports = [inputs.ags.homeManagerModules.default];
   home.packages = with pkgs; [
     sassc
+    libnotify
   ];
   programs.ags = {
     enable = true;

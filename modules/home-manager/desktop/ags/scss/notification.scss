@@ -16,7 +16,7 @@ window#notifications box.notifications {
     font-size: 58px;
     /* to center the icon */
     margin: 5px;
-    color: @theme_fg_color;
+    color: $fg;
 }
 
 .icon box {
@@ -27,24 +27,24 @@ window#notifications box.notifications {
 
 .notification {
     min-width: 350px;
-    border-radius: 11px;
+    border-radius: 8px;
     padding: 1em;
     margin: .5em;
-    border: 1px solid @wm_borders_edge;
-    background-color: @theme_bg_color;
+    border: 1px solid $accent;
+    background-color: transparentize($fg, 0.5);
 }
 
 .notification.critical {
-    border: 1px solid lightcoral;
+    border: 1px solid $accent;
 }
 
 .title {
-    color: @theme_fg_color;
+    color: $bg;
     font-size: 1.4em;
 }
 
 .body {
-    color: @theme_unfocused_fg_color;
+    color: $bg;
 }
 
 .actions .action-button {
