@@ -10,4 +10,5 @@
   ./okular
   ./octave
   ./zoom
+  ./waveforms/flake.nix
 ]

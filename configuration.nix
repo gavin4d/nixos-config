@@ -60,7 +60,7 @@
   users.users.gavin = {
     isNormalUser = true;
     description = "gavin ford";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "tty" "dialout" "usb"];
     packages = with pkgs; [];
   };
 

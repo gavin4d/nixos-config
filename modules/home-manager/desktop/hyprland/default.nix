@@ -156,8 +156,8 @@
           blur = {
               enabled = true;
               size = 4;
-              passes = 1;
-              noise = 0.05;
+              passes = 2;
+              noise = 0.15;
               new_optimizations = true;
               brightness = 0.4;
               ignore_opacity = true;

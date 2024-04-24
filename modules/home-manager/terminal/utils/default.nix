@@ -14,5 +14,8 @@
     htop
     zoxide
     nix-search-cli
+    sl
+    pulseview
+    sigrok-firmware-fx2lafw
   ];
 }
