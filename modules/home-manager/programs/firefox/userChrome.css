@@ -18,12 +18,16 @@
 
 /* hide navigation bar when it is not focused; use Ctrl+L to get focus */
 #main-window:not([customizing])[chromehidden=""] #nav-bar:not(:focus-within):not(:hover) {
-  margin-top: -41px;
+  margin-top: -42px;
 }
 
 #nav-bar {
   margin-top: 0px;
   transition: var(--vt-ani-time) margin-top var(--vt-ani-shape) 10ms !important;
+}
+
+#notification-popup {
+  margin-top: 8px; /* keep notification pop up inside window */
 }
 
 #PersonalToolbar:not([customizing]){
@@ -122,8 +126,8 @@ tab:not(:hover) .tab-close-button {
   display: none;
 }
 
-#browser {
-  margin-left: var(--vt-tab-width-thin); /* TODO: popup windows */
+html:not([inDOMFullscreen="true"]):has(#TabsToolbar:not([collapsed="true"])) #browser {
+  margin-left: var(--vt-tab-width-thin);
   transition: margin-left var(--vt-ani-time) var(--vt-ani-shape) var(--vt-ani-delay);
 }
 
@@ -131,5 +135,37 @@ tab:not(:hover) .tab-close-button {
   margin-left: var(--vt-tab-width-wide);
 }
 
+/*=============== NEW TAB PAGE ==============*/
 
+#navigator-toolbox:has(#identity-box.localResource[pageproxystate="invalid"]) + #browser > #appcontent { /* new tab page has class localResource and pageproxystate="invalid"*/
+  margin-top: 100vh; /* use margin to hide default page, because focus doesn't work when hidden */ 
+}
 
+#urlbar-container:has(#identity-box.localResource[pageproxystate="invalid"]) + #customizableui-special-spring2 {
+  max-width: none !important;
+}
+
+#urlbar-container:has(#identity-box.localResource[pageproxystate="invalid"]) {
+  --urlbar-container-height: 70px !important;
+  --toolbar-field-background-color: transparent !important;
+  --toolbar-field-focus-background-color: transparent !important;
+  position: fixed !important;
+  top: 200px;
+  height: max-content;
+  left: calc(50% - 30%);
+  width: 60% !important; 
+}
+
+#urlbar-container:has(#identity-box.localResource[pageproxystate="invalid"]) #urlbar {
+  --urlbar-height: 70px !important;
+  --urlbar-toolbar-height: 70px !important;
+}
+
+#urlbar-container:has(#identity-box.localResource[pageproxystate="invalid"]) #urlbar-background {
+  border-radius: 16px !important;
+  border: 4px solid var(--toolbar-field-border-color) !important;
+}
+
+#urlbar-go-button {
+  height: calc(var(--urlbar-height) - 2px - 2 * var(--urlbar-container-padding)) !important;
+}

@@ -32,7 +32,6 @@
     xwayland.enable = true;
 
     systemd.enable = true;
-    enableNvidiaPatches = false;
 
     settings = {
           
@@ -43,7 +42,10 @@
           ",preferred,auto,1"
         ];
 
-      env = "XCURSOR_SIZE,24";
+      env = [
+        "XCURSOR_SIZE,24"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+      ];
 
 #####################################################################################
 ##################################    Bindings    ###################################
@@ -62,8 +64,6 @@
 
       bind =
         [
-          "$mainMod $shiftKey, Q, exit"
-          
           # shortcuts
           "$mainMod, R, exec, wofi --show drun"
 
@@ -71,22 +71,29 @@
           "$mainMod, Q, killactive"
           "$mainMod , F, fullscreen"
           "$mainMod, space, togglefloating"
-          "$mainMod, J, togglesplit" # dwindle
+          "$mainMod, S, togglesplit" # dwindle
           "$mainMod $shiftKey, A, pin" # Keep above
           "$mainMod, left, movefocus, l"
           "$mainMod, right, movefocus, r"
           "$mainMod, up, movefocus, u"
           "$mainMod, down, movefocus, d"
+          "$mainMod, h, movefocus, l"
+          "$mainMod, l, movefocus, r"
+          "$mainMod, k, movefocus, u"
+          "$mainMod, j, movefocus, d"
           "$mainMod SHIFT, left, movewindow, l"
           "$mainMod SHIFT, right, movewindow, r"
           "$mainMod SHIFT, up, movewindow, u"
           "$mainMod SHIFT, down, movewindow, d"
+          "$mainMod SHIFT, h, movewindow, l"
+          "$mainMod SHIFT, l, movewindow, r"
+          "$mainMod SHIFT, k, movewindow, u"
+          "$mainMod SHIFT, j, movewindow, d"
           "$mainMod $alttKey, left, splitratio, -0.05"
           "$mainMod $alttKey, right, splitratio, 0.05"
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
           "$mainMod, Escape, workspace, previous"
-          "$mainMod, H, togglespecialworkspace"
 
           # volume controls
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -105,6 +112,9 @@
           "$mainMod, f1, exec, ags -r \"showLeftMenu()\""
           "$mainMod, f2, exec, ags -r \"showNotificationCenter()\""
           "$mainMod, f3, exec, ags -r \"showHardwareMenu()\""
+
+          # disable middle-click paste
+          #", mouse:274, exec, "
           ]
         ++ (
           # workspaces
@@ -155,9 +165,9 @@
       
           blur = {
               enabled = true;
-              size = 4;
+              size = 3;
               passes = 2;
-              noise = 0.15;
+              noise = 0.1;
               new_optimizations = true;
               brightness = 0.4;
               ignore_opacity = true;
@@ -193,18 +203,18 @@
               "md3_standard, 0.2, 0.0, 0, 1.0"
               "md3_decel, 0.05, 0.7, 0.1, 1"
               "md3_accel, 0.3, 0, 0.8, 0.15"
-              "overshot, 0.05, 0.9, 0.1, 1.05"
+              "overshoot, 0.05, 0.9, 0.1, 1.05"
               "hyprnostretch, 0.05, 0.9, 0.1, 1.0"
-              "win10, 0, 0, 0, 1"
-              "gnome, 0, 0.85, 0.3, 1"
+              "bounce, 0.4, 0.05, 0, 1.1"
+              "test, 2, 1.25, -0.5, -1"
               "funky, 0.46, 0.35, -0.2, 1.2"
             ];
           # Animation configs
           animation = 
             [
-              "windows, 1, 2, md3_decel, slide"
+              "windows, 1, 2, overshoot, slide"
               "border, 1, 5, default"
-              "workspaces, 1, 4, md3_decel, slide"
+              "workspaces, 1, 2, overshoot, slide"
               "fadeIn, 1, 5, md3_decel"
               "fadeOut, 1, 5, md3_decel"
             ];

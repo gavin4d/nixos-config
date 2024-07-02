@@ -14,7 +14,8 @@
     htop
     zoxide
     nix-search-cli
-    sl
+    sl    
+    xorg.xeyes
     pulseview
     sigrok-firmware-fx2lafw
   ];

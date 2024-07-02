@@ -10,9 +10,11 @@
     };
         
     ags.url = "github:Aylur/ags";
+    waveforms.url = "github:liff/waveforms-flake";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { home-manager, self, nixpkgs, ... }@inputs:
+  outputs = { home-manager, self, nixpkgs, waveforms, catppuccin, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -24,6 +26,8 @@
         modules = [ 
           ./configuration.nix 
           home-manager.nixosModule
+	  waveforms.nixosModule
+	  ({ users.users.gavin.extraGroups = [ "plugdev" ]; })
         ];
       };
 
@@ -34,7 +38,10 @@
         extraSpecialArgs = { inherit inputs; };
 
         # import your home.nix
-        modules = [ ./modules/home-manager/home.nix ];
+        modules = [ 
+	  ./modules/home-manager/home.nix 
+	  #catppuccin.homeManagerModules.catppuccin
+	];
       };
 
     };

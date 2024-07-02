@@ -10,5 +10,9 @@
   ./okular
   ./octave
   ./zoom
-  ./waveforms/flake.nix
+  ./spotify
+  ./opentx
+  ./lmms
+  ./obs
+#  ./waveform
 ]

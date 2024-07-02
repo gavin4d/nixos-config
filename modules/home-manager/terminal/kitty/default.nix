@@ -4,5 +4,5 @@
     pkgs.kitty
   ];
 
-  home.file.".config/kitty/kitty.conf".text = import ./kitty_config.nix;
+  home.file.".config/kitty/kitty.conf".source = ./kitty.conf;
 }

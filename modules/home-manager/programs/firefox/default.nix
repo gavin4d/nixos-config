@@ -16,7 +16,7 @@
       settings = {
         #"browser.startup.homepage" = "file://${./homepage.html}";
       };
-      userChrome = builtins.readFile(./userChrome.css);
+      #userChrome = builtins.readFile(./userChrome.css);
     };
   };
 }
