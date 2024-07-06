@@ -3,18 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-<<<<<<< HEAD
-<<<<<<< HEAD
-  home.username = "gavin";
-  home.homeDirectory = "/home/gavin";
-=======
   home.username = "gavin4d";
   home.homeDirectory = "/home/gavin4d";
->>>>>>> 68a5c45 (switched laptops)
-=======
-  home.username = "gavin";
-  home.homeDirectory = "/home/gavin";
->>>>>>> b6f316c (update)
 
   imports = 
 #      [inputs.ags.homeManagerModules.default] ++
@@ -29,15 +19,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-<<<<<<< HEAD
-<<<<<<< HEAD
-  home.stateVersion = "23.11"; # Please read the comment before changing.
-=======
   home.stateVersion = "24.05"; # Please read the comment before changing.
->>>>>>> 68a5c45 (switched laptops)
-=======
-  home.stateVersion = "23.11"; # Please read the comment before changing.
->>>>>>> b6f316c (update)
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

@@ -5,19 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1714402202,
-        "narHash": "sha256-Ga7MdGc1CA+WwLB7xAEbuzXzGtEM2346kUDvq8ymgJc=",
-        "owner": "Aylur",
-        "repo": "ags",
-        "rev": "bb91f7c8fdd2f51c79d3af3f2881cacbdff19f60",
-=======
         "lastModified": 1718921313,
         "narHash": "sha256-TFJah1RW5qnYW7kajjAFPAS5j/0q0R3vz9zPjrRA0Mc=",
         "owner": "Aylur",
         "repo": "ags",
         "rev": "646d5ad073ff7f8b1d50cfbd40f5b8a250fcd59d",
->>>>>>> 68a5c45 (switched laptops)
         "type": "github"
       },
       "original": {
@@ -28,19 +20,11 @@
     },
     "catppuccin": {
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1714422957,
-        "narHash": "sha256-fQ1NP//CLQSj/te/qUxO+YiHlz6KYPxzVFSW5ldQGMA=",
-        "owner": "catppuccin",
-        "repo": "nix",
-        "rev": "f46dffa3345aba8b315ed7ddd1be4bc12f9e9e78",
-=======
         "lastModified": 1719915848,
         "narHash": "sha256-zq+CMkdT8A9z74HonwspXp8HsX4OvP4uaVdD98AO6as=",
         "owner": "catppuccin",
         "repo": "nix",
         "rev": "9345073d27d91ab66c1b6ab65df322906992aa59",
->>>>>>> 68a5c45 (switched laptops)
         "type": "github"
       },
       "original": {
@@ -56,19 +40,11 @@
         ]
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1714515075,
-        "narHash": "sha256-azMK7aWH0eUc3IqU4Fg5rwZdB9WZBvimOGG3piqvtsY=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "6d3b6dc9222c12b951169becdf4b0592ee9576ef",
-=======
         "lastModified": 1720188602,
         "narHash": "sha256-lC3byBmhVZFzWl/dCic8+cKUEEAXAswWOYjq4paFmbo=",
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "e3582e5151498bc4d757e8361431ace8529e7bb7",
->>>>>>> 68a5c45 (switched laptops)
         "type": "github"
       },
       "original": {
@@ -79,19 +55,11 @@
     },
     "nixpkgs": {
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1708475490,
-        "narHash": "sha256-g1v0TsWBQPX97ziznfJdWhgMyMGtoBFs102xSYO4syU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "0e74ca98a74bc7270d28838369593635a5db3260",
-=======
         "lastModified": 1718714799,
         "narHash": "sha256-FUZpz9rg3gL8NVPKbqU8ei1VkPLsTIfAJ2fdAf5qjak=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "c00d587b1a1afbf200b1d8f0b0e4ba9deb1c7f0e",
->>>>>>> 68a5c45 (switched laptops)
         "type": "github"
       },
       "original": {
@@ -103,19 +71,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1714253743,
-        "narHash": "sha256-mdTQw2XlariysyScCv2tTE45QSU9v/ezLcHJ22f0Nxc=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "58a1abdbae3217ca6b702f03d3b35125d88a2994",
-=======
         "lastModified": 1720031269,
         "narHash": "sha256-rwz8NJZV+387rnWpTYcXaRNvzUSnnF9aHONoJIYmiUQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "9f4128e00b0ae8ec65918efeba59db998750ead6",
->>>>>>> 68a5c45 (switched laptops)
         "type": "github"
       },
       "original": {
@@ -128,13 +88,8 @@
     "nixpkgs_3": {
       "locked": {
         "lastModified": 0,
-<<<<<<< HEAD
-        "narHash": "sha256-qrxvLS888pNJFwJdK+hf1wpRCSQcqA6W5+Ox202NDa0=",
-        "path": "/nix/store/zaza7mgggz4m5h6z18kajabf4wciaj47-source",
-=======
         "narHash": "sha256-mdTQw2XlariysyScCv2tTE45QSU9v/ezLcHJ22f0Nxc=",
         "path": "/nix/store/801l7gvdz7yaibhjsxqx82sc7zkakjbq-source",
->>>>>>> 68a5c45 (switched laptops)
         "type": "path"
       },
       "original": {
@@ -156,19 +111,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-<<<<<<< HEAD
-        "lastModified": 1711337312,
-        "narHash": "sha256-qC3D3nLQ34hqTrFvpV7LeKmbWTzKd1hq+CyvMcav8mk=",
-        "owner": "liff",
-        "repo": "waveforms-flake",
-        "rev": "ed05c906204b513b386e52ade88468d6f587a4d4",
-=======
         "lastModified": 1716229747,
         "narHash": "sha256-+0/cbSs7m1hoTjZjZCqdTf3+LZlMun9rjxzZJi3+tHY=",
         "owner": "liff",
         "repo": "waveforms-flake",
         "rev": "db549ac1a08d295142eeaabd4b62a339c81930ad",
->>>>>>> 68a5c45 (switched laptops)
         "type": "github"
       },
       "original": {
