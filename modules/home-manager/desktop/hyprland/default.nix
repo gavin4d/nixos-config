@@ -37,7 +37,11 @@
           
       monitor=
         [
+<<<<<<< HEAD
           "eDP-1,1920x1080,auto,1"
+=======
+          "eDP-1,1920x1200,auto,1"
+>>>>>>> 68a5c45 (switched laptops)
           "HDMI-A-1,preferred,auto,1"
           ",preferred,auto,1"
         ];
@@ -235,7 +239,10 @@
       
       master = {
           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+<<<<<<< HEAD
           new_is_master = true;
+=======
+>>>>>>> 68a5c45 (switched laptops)
           allow_small_split = true;
           special_scale_factor = 1;
           mfact = 0.5;

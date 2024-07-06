@@ -8,12 +8,21 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+<<<<<<< HEAD
     ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/nvme0n1";
   boot.loader.grub.useOSProber = true;
+=======
+      
+    ];
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+>>>>>>> 68a5c45 (switched laptops)
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -57,7 +66,11 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+<<<<<<< HEAD
   users.users.gavin = {
+=======
+  users.users.gavin4d = {
+>>>>>>> 68a5c45 (switched laptops)
     isNormalUser = true;
     description = "gavin ford";
     extraGroups = [ "networkmanager" "wheel" "tty" "dialout" "usb"];
@@ -72,6 +85,10 @@
   environment.systemPackages = with pkgs; [
     # general
     #fprintd-tod
+<<<<<<< HEAD
+=======
+    vim
+>>>>>>> 68a5c45 (switched laptops)
     xdg-desktop-portal
     #qt5ct
     #pkgs.wl-clipboard
@@ -112,7 +129,10 @@
   hardware = {
     opengl = {
       enable = true;
+<<<<<<< HEAD
       driSupport = true;
+=======
+>>>>>>> 68a5c45 (switched laptops)
       driSupport32Bit = true;
       extraPackages = with pkgs; [
         mesa_drivers
@@ -199,6 +219,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+<<<<<<< HEAD
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -206,5 +227,25 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+=======
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # to actually do that.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "24.05"; # Did you read the comment?
+>>>>>>> 68a5c45 (switched laptops)
 
 }

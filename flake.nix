@@ -27,11 +27,19 @@
           ./configuration.nix 
           home-manager.nixosModule
 	  waveforms.nixosModule
+<<<<<<< HEAD
 	  ({ users.users.gavin.extraGroups = [ "plugdev" ]; })
         ];
       };
 
       homeConfigurations.gavin = home-manager.lib.homeManagerConfiguration {
+=======
+	  ({ users.users.gavin4d.extraGroups = [ "plugdev" ]; })
+        ];
+      };
+
+      homeConfigurations.gavin4d = home-manager.lib.homeManagerConfiguration {
+>>>>>>> 68a5c45 (switched laptops)
         pkgs = import nixpkgs { inherit system; };
 
         # pass inputs as specialArgs
