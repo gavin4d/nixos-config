@@ -149,7 +149,7 @@
         gaps_in = 4;
         gaps_out = 6;
         border_size = 2;
-        "col.active_border" = "rgba(4ab0f0FF)";
+        "col.active_border" = "rgba(a34b25FF)";
         "col.inactive_border" = "rgba(59595900)";
         layout = "dwindle";
       };
@@ -269,7 +269,7 @@
           "ags"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "swww init"
-          "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/2.gif"
+          "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/8.jpg"
         ];
 
     };

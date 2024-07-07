@@ -13,12 +13,12 @@
     min-height: 16px;
     min-width: 16px; }
   .bar .workspaces button.active .indicator {
-    background-color: #4ab0f0;
+    background-color: #a34b25;
     min-height: 16px;
     min-width: 24px; }
 
 .bar .clock {
-  color: #4ab0f0;
+  color: #a34b25;
   font-size: 16px;
   font-weight: bold; }
 
@@ -37,19 +37,19 @@
         border-radius: 50%;
         margin: 8px; }
       .bar .hardware-bar box circular-progress.battery {
-        color: #4ab0f0; }
+        color: #a34b25; }
         .bar .hardware-bar box circular-progress.battery label {
-          background-color: #4ab0f0; }
+          background-color: #a34b25; }
           .bar .hardware-bar box circular-progress.battery label.charging {
             animation: colorPulse 2s infinite; }
 
 @keyframes colorPulse {
   0% {
-    background-color: #4ab0f0; }
+    background-color: #a34b25; }
   50% {
     background-color: transparent; }
   100% {
-    background-color: #4ab0f0; } }
+    background-color: #a34b25; } }
 
 window#notifications {
   all: unset; }
@@ -78,11 +78,11 @@ window#notifications box.notifications {
   border-radius: 8px;
   padding: 1em;
   margin: .5em;
-  border: 1px solid #4ab0f0;
+  border: 1px solid #a34b25;
   background-color: rgba(238, 238, 238, 0.5); }
 
 .notification.critical {
-  border: 1px solid #4ab0f0; }
+  border: 1px solid #a34b25; }
 
 .title {
   color: #141414;
@@ -104,17 +104,17 @@ window#notifications box.notifications {
 .container {
   border-radius: 8px;
   padding: 0 1em 0 1em;
-  border: 1px solid #4ab0f0;
+  border: 1px solid #a34b25;
   background-color: rgba(238, 238, 238, 0.5);
   min-width: 140px; }
 
 scale slider {
-  background: #4ab0f0;
-  box-shadow: 0 0 2px 0 #141414;
+  background: #a34b25;
+  box-shadow: 0 0 2px 0 #eeeeee;
   border: none; }
 
 scale trough {
   background: #eeeeee;
   min-height: 8px; }
   scale trough highlight {
-    background: #4ab0f0; }
+    background: #a34b25; }

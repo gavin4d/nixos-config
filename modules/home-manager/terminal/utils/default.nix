@@ -1,6 +1,7 @@
 {pkgs, ...}:
 {
   home.packages = with pkgs; [
+    eza
     vim
     git
     gh
@@ -12,7 +13,9 @@
     neofetch
     gtop
     htop
+    btop
     zoxide
+    parted
     nix-search-cli
     sl    
     xorg.xeyes

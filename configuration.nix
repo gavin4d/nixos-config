@@ -19,7 +19,16 @@
     experimental-features = [ "nix-command" "flakes" ];
   };
   
-  networking.hostName = "nixos"; # Define your hostname.
+  networking = {
+    hostName = "nixos"; # Define your hostname.
+    # useDHCP = false;
+    # interfaces.ens3.useDHCP = false;
+    nameservers = ["8.8.8.8" "1.1.1.1" "8.8.4.4"];
+    networkmanager = {
+      enable = true;
+      #dns = "none";
+    };
+  };
 #  networking.wireless = {
 #  	enable = true;  # Enables wireless support via wpa_supplicant.
 #	userControlled.enable = true;
@@ -28,9 +37,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -70,28 +76,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # general
-    #fprintd-tod
+    dig
     vim
     xdg-desktop-portal
-    #qt5ct
-    #pkgs.wl-clipboard
-    #brightnessctl
-    #bc
-    #sassc
-    #systemsettings
-    #glib
-    #libimobiledevice-glue
-    #plasma-theme-switcher
-    #plasma-pa
-
-    #easyeffects
-    #nwg-look
-    #libsForQt5.qtstyleplugin-kvantum
-    #lightly-qt
-    #vscode
-    #pywal
-];
+  ];
 
   environment.sessionVariables = {
     #WLR_NO_HARDWARE_CURSORS = "1";
@@ -106,6 +94,7 @@
       #font-awesome_5
       noto-fonts-cjk-sans
       nasin-nanpa
+      meslo-lgs-nf
     ];
     fontDir.enable = true;
   };
@@ -124,34 +113,50 @@
     };
 
     enableAllFirmware = true;
+
+    bluetooth.enable = true;
   };
 
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
 
-  # Enable CUPS to print
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+  services = {
+    # Enable CUPS to print
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
 
-  #Enable bluetooth
-  hardware.bluetooth.enable = true;
+    
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    upower.enable = true;
+
+    dbus.enable = true;
+
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+          user = "greeter";
+        };
+      };
+    };
+  };
 
   # Enable sound
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -165,7 +170,6 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  services.upower.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -187,11 +191,10 @@
     };
   };
 
-  services.dbus.enable = true;
 
-  services.fprintd.enable = true;
-  services.fprintd.tod.enable = true;
-  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090;
+  # services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
+  # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

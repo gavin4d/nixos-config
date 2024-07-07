@@ -5,4 +5,5 @@
   ./lf
   ./utils
   ./helix
+  ./python
 ]

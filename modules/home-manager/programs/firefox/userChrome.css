@@ -18,7 +18,7 @@
 
 /* hide navigation bar when it is not focused; use Ctrl+L to get focus */
 #main-window:not([customizing])[chromehidden=""] #nav-bar:not(:focus-within):not(:hover) {
-  margin-top: -42px;
+  margin-top: -43px;
 }
 
 #nav-bar {
