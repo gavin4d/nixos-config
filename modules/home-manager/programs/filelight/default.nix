@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    krita
-    inkscape
+    libsForQt5.filelight
   ];
 }

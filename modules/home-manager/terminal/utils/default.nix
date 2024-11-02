@@ -1,7 +1,20 @@
 {pkgs, ...}:
 {
   home.packages = with pkgs; [
+    checkra1n
+    iperf
+    chromium
+    vscode
+    qtcreator
+    onedrive
+    http-server
+    onedrivegui
+    poppler_utils
+    zip
+    libimobiledevice
+    ventoy
     eza
+    asuka
     vim
     git
     gh
@@ -16,6 +29,7 @@
     btop
     zoxide
     parted
+    jmtpfs
     nix-search-cli
     sl    
     xorg.xeyes

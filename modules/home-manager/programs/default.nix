@@ -1,5 +1,7 @@
 [
   ./firefox
+  ./MUD
+  ./typst
   ./obsidian
   ./wofi
   ./discord
@@ -17,5 +19,9 @@
   ./steam
   ./lmms
   ./obs
+  ./minecraft
+  ./filelight
+  ./remoteDesktop
+  ./CCStudio
 #  ./waveform
 ]

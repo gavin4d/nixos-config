@@ -19,4 +19,10 @@
       userChrome = builtins.readFile(./userChrome.css);
     };
   };
+  home.packages = with pkgs; [
+    readability-cli
+    ffsend
+    floorp
+    microsoft-edge
+  ];
 }

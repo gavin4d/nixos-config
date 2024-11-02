@@ -1,6 +1,7 @@
 {pkgs, inputs, ...}:
 {
   home.packages = with pkgs; [
+    hyprpicker
     swww
     upower
     playerctl
@@ -8,6 +9,7 @@
     lm_sensors
     sysstat
     networkmanagerapplet
+    # globalprotect-openconnect
 #    catppuccin
 #    catppuccin-gtk
 #    catppuccin-kde

@@ -14,6 +14,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8192eu ];
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -28,6 +29,11 @@
       enable = true;
       #dns = "none";
     };
+    firewall.allowedTCPPortRanges = [
+      { from = 5001; to = 5001; }
+      { from = 8080; to = 8080; }
+      { from = 5201; to = 5201; }
+    ];
   };
 #  networking.wireless = {
 #  	enable = true;  # Enables wireless support via wpa_supplicant.
@@ -39,7 +45,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "America/New_York";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -58,8 +64,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      variant = "";
+      layout = "";
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -71,7 +79,11 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnsupportedSystem = true;
+  };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -100,11 +112,10 @@
   };
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      #driSupport32Bit = true;
       extraPackages = with pkgs; [
-        mesa_drivers
         intel-ocl
         vaapiIntel
         vaapiVdpau
@@ -121,7 +132,18 @@
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+  ];
+
   services = {
+
+  usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
     # Enable CUPS to print
     printing.enable = true;
     avahi = {
@@ -141,6 +163,29 @@
     };
 
     upower.enable = true;
+
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 60;
+
+        #Optional helps save long term battery health
+        START_CHARGE_THRESH_BAT0 = 75; # 75 and bellow it starts to charge
+        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+
+      };
+    };
+
+    # globalprotect.enable = true;
 
     dbus.enable = true;
 

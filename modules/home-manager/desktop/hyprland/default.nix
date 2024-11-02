@@ -43,6 +43,9 @@
         ];
 
       env = [
+        "HYPRCURSOR_THEME,phinger-cursors-dark"
+        "HYPRCURSOR_SIZE,24"
+        "XCURSOR,phinger-cursors-dark"
         "XCURSOR_SIZE,24"
         "QT_QPA_PLATFORMTHEME,qt5ct"
       ];
@@ -69,6 +72,7 @@
 
           # window controls
           "$mainMod, Q, killactive"
+          "$mainMod $shiftKey, Q, exec, hyprctl activewindow |grep pid |tr -d 'pid:'|xargs kill"
           "$mainMod , F, fullscreen"
           "$mainMod, space, togglefloating"
           "$mainMod, S, togglesplit" # dwindle
@@ -107,6 +111,7 @@
           # applications
           "$mainMod, return, exec, kitty"
           ",Print, exec, grim -g \"$(slurp -d -c 00000000 -b 00aaaa22)\" - | wl-copy -t image/png"
+          "$shiftKey, Print, exec, hyprpicker | wl-copy"
 
           # menus
           "$mainMod, f1, exec, ags -r \"showLeftMenu()\""
@@ -149,7 +154,8 @@
         gaps_in = 4;
         gaps_out = 6;
         border_size = 2;
-        "col.active_border" = "rgba(a34b25FF)";
+        # "col.active_border" = "rgba(a34b25FF)";
+        "col.active_border" = "rgba(4D4AABFF)";
         "col.inactive_border" = "rgba(59595900)";
         layout = "dwindle";
       };
@@ -167,7 +173,7 @@
               enabled = true;
               size = 3;
               passes = 2;
-              noise = 0.1;
+              noise = 0.05;
               new_optimizations = true;
               brightness = 0.4;
               ignore_opacity = true;
@@ -269,7 +275,8 @@
           "ags"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "swww init"
-          "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/8.jpg"
+          "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/5.jpg"
+          "nix-shell ~/programming/Music-Player/shell.nix"
         ];
 
     };
