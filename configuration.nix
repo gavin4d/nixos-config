@@ -90,13 +90,13 @@
   environment.systemPackages = with pkgs; [
     dig
     vim
-    xdg-desktop-portal
+    # xdg-desktop-portal
   ];
 
   environment.sessionVariables = {
     #WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
-    QT_QPA_PLATFORM = "wayland";
+    # QT_QPA_PLATFORM = "wayland";
     QT_QPA_PLATFORMTHEME="qt5ct";
   };
 
@@ -107,6 +107,11 @@
       noto-fonts-cjk-sans
       nasin-nanpa
       meslo-lgs-nf
+      atkinson-hyperlegible
+      opengothic
+      udev-gothic
+      yasashisa-gothic
+      roboto
     ];
     fontDir.enable = true;
   };
@@ -114,7 +119,7 @@
   hardware = {
     graphics = {
       enable = true;
-      #driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [
         intel-ocl
         vaapiIntel
@@ -140,10 +145,10 @@
 
   services = {
 
-  usbmuxd = {
-    enable = true;
-    package = pkgs.usbmuxd2;
-  };
+    usbmuxd = {
+      enable = true;
+      package = pkgs.usbmuxd2;
+    };
     # Enable CUPS to print
     printing.enable = true;
     avahi = {
@@ -198,6 +203,13 @@
         };
       };
     };
+    fprintd = {
+      enable = true;
+      tod = {
+        enable = true;
+        driver = pkgs.libfprint-2-tod1-vfs0090;
+      };
+    };
   };
 
   # Enable sound
@@ -234,6 +246,7 @@
         };
       };
     };
+    config.common.default = "*";
   };
 
 

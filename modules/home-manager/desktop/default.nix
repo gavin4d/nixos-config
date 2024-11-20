@@ -2,4 +2,5 @@
   ./hyprland
   ./ags
   ./utils
+  # ./fprintd
 ]

@@ -5,5 +5,7 @@
     qcad
     libsForQt5.kdenlive
     audacity
+    sdrpp
+
   ];
 }

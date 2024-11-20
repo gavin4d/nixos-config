@@ -1,8 +1,9 @@
-{config, pkgs, ...}: {
-  home.packages = with pkgs; [
-    steam-unwrapped
+{config, pkgs, pkgs-stable, ...}: {
+
+  home.packages = [
+    pkgs-stable.steam
     # steamPackages.steam-fhsenv-without-steam
-    steam-run
+    # pkgs-stable.steam-run
   ];
   # programs.steam = {
   #   enable = true;

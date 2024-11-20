@@ -3,13 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    #nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        #nixpkgs-stable.follows = "nixpkgs-stable";
+        # nixpkgs-stable.follows = "nixpkgs";
       };
     };
         
@@ -19,15 +19,30 @@
     CCStudio.url = "path:/etc/nixos/modules/home-manager/programs/CCStudio";
   };
 
-  outputs = { home-manager, self, nixpkgs, waveforms, catppuccin, CCStudio, ... }@inputs:
+  outputs = { home-manager, self, nixpkgs, nixpkgs-stable, waveforms, catppuccin, CCStudio, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-stable = import nixpkgs-stable {
+        system = "x86_64-linux";
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+        # legacyPackages.${system};
+      };
+      allowed-unfree-packages = [
+        "steam"
+      ];
     in
     {
     
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          inherit pkgs-stable;
+          inherit allowed-unfree-packages;
+        };
         # module.args = { inherit CCStudio;};
         modules = [ 
           ./configuration.nix 
@@ -42,14 +57,17 @@
         pkgs = import nixpkgs { inherit system; };
 
         # pass inputs as specialArgs
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit pkgs-stable;
+          inherit allowed-unfree-packages;
+        };
 
         # import your home.nix
         modules = [ 
-	  ./modules/home-manager/home.nix 
-	  #catppuccin.homeManagerModules.catppuccin
-	];
+      	  ./modules/home-manager/home.nix 
+      	  #catppuccin.homeManagerModules.catppuccin
+      	];
       };
-
     };
 }

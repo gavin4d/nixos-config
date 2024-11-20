@@ -1,6 +1,7 @@
 {pkgs, ...}:
 {
   home.packages = with pkgs; [
+    cmatrix
     checkra1n
     iperf
     chromium
@@ -15,6 +16,8 @@
     ventoy
     eza
     asuka
+    lagrange
+    amfora
     vim
     git
     gh
@@ -34,6 +37,7 @@
     sl    
     xorg.xeyes
     pulseview
+    cowsay
     sigrok-firmware-fx2lafw
   ];
 }

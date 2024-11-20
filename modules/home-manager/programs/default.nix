@@ -23,5 +23,6 @@
   ./filelight
   ./remoteDesktop
   ./CCStudio
+  ./ELRS
 #  ./waveform
 ]
