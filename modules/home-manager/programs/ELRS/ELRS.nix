@@ -1,5 +1,5 @@
 { stdenv, fetchzip, autoPatchelfHook, lib, makeWrapper, electron_33, libgcc
-, libstdcxx5, musl, libxc, libxkbcommon, alsa-lib, at-spi2-core, gcc, nss, nspr
+, musl, libxc, libxkbcommon, alsa-lib, at-spi2-core, gcc, nss, nspr
 , cups, libdrm, gtk3, pango, cairo, xorg, mesa, libglvnd, dbus, libpulseaudio
 , freetype, fontconfig, wayland, wayland-protocols
 
@@ -22,7 +22,7 @@ in stdenv.mkDerivation rec {
   buildInputs = [
     gcc
     libgcc
-    libstdcxx5
+    # libstdcxx5
     musl
     libxc
     libxkbcommon

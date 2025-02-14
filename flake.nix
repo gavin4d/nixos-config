@@ -17,9 +17,10 @@
     waveforms.url = "github:liff/waveforms-flake";
     catppuccin.url = "github:catppuccin/nix";
     CCStudio.url = "path:/etc/nixos/modules/home-manager/programs/CCStudio";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { home-manager, self, nixpkgs, nixpkgs-stable, waveforms, catppuccin, CCStudio, ... }@inputs:
+  outputs = { home-manager, self, nixpkgs, nixpkgs-stable, waveforms, catppuccin, nix-colors, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -61,6 +62,7 @@
           inherit inputs;
           inherit pkgs-stable;
           inherit allowed-unfree-packages;
+          inherit nix-colors;
         };
 
         # import your home.nix

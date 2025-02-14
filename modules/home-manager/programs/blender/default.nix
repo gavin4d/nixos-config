@@ -5,7 +5,7 @@
     qcad
     libsForQt5.kdenlive
     audacity
-    sdrpp
-
+    # bambu-studio
+    prusa-slicer
   ];
 }

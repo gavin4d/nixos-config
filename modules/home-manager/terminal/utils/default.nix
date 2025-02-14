@@ -32,6 +32,7 @@
     btop
     zoxide
     parted
+    platformio
     jmtpfs
     nix-search-cli
     sl    

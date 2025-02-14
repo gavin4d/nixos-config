@@ -14,7 +14,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8192eu ];
+  # boot.extraModulePackages = [ config.boot.kernelPackages.rtl8192eu ];
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -74,7 +74,7 @@
   users.users.gavin4d = {
     isNormalUser = true;
     description = "gavin ford";
-    extraGroups = [ "networkmanager" "wheel" "tty" "dialout" "usb"];
+    extraGroups = [ "networkmanager" "wheel" "tty" "dialout" "usb" "plugdev"];
     packages = with pkgs; [];
   };
 
@@ -84,14 +84,24 @@
     allowUnsupportedSystem = true;
   };
 
+  documentation.dev.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     dig
     vim
-    # xdg-desktop-portal
+    glibc
+    man-pages
+    man-pages-posix
+    xdg-desktop-portal
+    stdmanpages
+    aspellDicts.en
+    epapirus-icon-theme
+    # catppuccin-papirus-folders
   ];
+  
+  environment.wordlist.enable = true;
 
   environment.sessionVariables = {
     #WLR_NO_HARDWARE_CURSORS = "1";
@@ -108,9 +118,9 @@
       nasin-nanpa
       meslo-lgs-nf
       atkinson-hyperlegible
-      opengothic
-      udev-gothic
-      yasashisa-gothic
+      # opengothic
+      # udev-gothic
+      # yasashisa-gothic
       roboto
     ];
     fontDir.enable = true;
@@ -128,6 +138,8 @@
       ];
     };
 
+    rtl-sdr.enable = true;
+
     enableAllFirmware = true;
 
     bluetooth.enable = true;
@@ -142,6 +154,7 @@
     # Add any missing dynamic libraries for unpackaged programs
     # here, NOT in environment.systemPackages
   ];
+  programs.hyprlock.enable = true;
 
   services = {
 
@@ -184,13 +197,15 @@
         CPU_MAX_PERF_ON_BAT = 60;
 
         #Optional helps save long term battery health
-        START_CHARGE_THRESH_BAT0 = 75; # 75 and bellow it starts to charge
-        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+        # START_CHARGE_THRESH_BAT0 = 75; # 75 and bellow it starts to charge
+        # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
 
       };
     };
 
     # globalprotect.enable = true;
+
+    openssh.enable = true;
 
     dbus.enable = true;
 
@@ -210,9 +225,9 @@
         driver = pkgs.libfprint-2-tod1-vfs0090;
       };
     };
+    udev.packages = [ pkgs.rtl-sdr ];
   };
 
-  # Enable sound
   security.rtkit.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -248,6 +263,7 @@
     };
     config.common.default = "*";
   };
+  xdg.icons.enable = true;
 
 
   # services.fprintd.enable = true;

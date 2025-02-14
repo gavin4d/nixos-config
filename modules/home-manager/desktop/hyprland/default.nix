@@ -1,6 +1,12 @@
-{ pkgs, inputs, ... }:
+{ pkgs, config, inputs, nix-colors, lib, ... }:
 
 {
+  imports = [
+    nix-colors.homeManagerModules.default
+  ];
+
+  colorScheme = nix-colors.lib.schemeFromYAML "wall-color" (builtins.readFile  ../wallpapers/colors/color.yaml);
+
   home.packages = with pkgs; [
     grim
     slurp
@@ -8,6 +14,31 @@
     wl-clipboard
   ];
 
+  gtk = {
+    enable = true;
+    font.name = "TeX Gyre Adventor 10";
+    theme = {
+      name = "Nordic-darker";
+      package = pkgs.nordic;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    gtk3.extraConfig = {
+    Settings = ''
+      gtk-application-prefer-dark-theme=1
+    '';
+    };
+
+    gtk4.extraConfig = {
+    Settings = ''
+      gtk-application-prefer-dark-theme=1
+    '';
+    };
+  
+  };
   programs = {
     bash = {
       initExtra = ''
@@ -67,6 +98,8 @@
 
       bind =
         [
+          ", $mainMod, workspace, 4"
+          
           # shortcuts
           "$mainMod, R, exec, wofi --show drun"
 
@@ -99,27 +132,16 @@
           "$mainMod, mouse_up, workspace, e-1"
           "$mainMod, Escape, workspace, previous"
 
+          ", xf86Display, movecurrentworkspacetomonitor, +1"
+
           # volume controls
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-          ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- "
-
-          # brightness controls
-          ", xf86monbrightnessup, exec, brightnessctl set 5%+"
-          ", xf86monbrightnessdown, exec, brightnessctl set 5%-"
           # applications
           "$mainMod, return, exec, kitty"
           ",Print, exec, grim -g \"$(slurp -d -c 00000000 -b 00aaaa22)\" - | wl-copy -t image/png"
           "$shiftKey, Print, exec, hyprpicker | wl-copy"
 
-          # menus
-          "$mainMod, f1, exec, ags -r \"showLeftMenu()\""
-          "$mainMod, f2, exec, ags -r \"showNotificationCenter()\""
-          "$mainMod, f3, exec, ags -r \"showHardwareMenu()\""
-
-          # disable middle-click paste
-          #", mouse:274, exec, "
           ]
         ++ (
           # workspaces
@@ -137,6 +159,27 @@
             )
             10)
         );
+      binde =
+        [
+          # volume controls
+          ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- "
+          "$mainMod, xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          "$mainMod, xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- "
+
+          # brightness controls
+          ", xf86monbrightnessup, exec, brightnessctl set 5%+"
+          ", xf86monbrightnessdown, exec, brightnessctl set 5%-"
+        ];
+      bindi =
+        [
+          "$mainMod, Super_L, exec, ags request -i main-ags 'show bar'"
+        ];
+      bindrt =
+        [
+          "$mainMod, Super_L, exec, ags request -i main-ags 'hide bar'"
+        ];
+      
 
 #####################################################################################
 ##################################    Variables    ##################################
@@ -155,8 +198,8 @@
         gaps_out = 6;
         border_size = 2;
         # "col.active_border" = "rgba(a34b25FF)";
-        "col.active_border" = "rgba(4D4AABFF)";
-        "col.inactive_border" = "rgba(59595900)";
+        "col.active_border" = "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0F}) 45deg";
+        "col.inactive_border" = "rgb(${config.colorScheme.palette.base00})";
         layout = "dwindle";
       };
 
@@ -184,10 +227,10 @@
       
           # blur_xray = false
           # Shadow
-          drop_shadow = true;
-          shadow_range = 30;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(01010144)";
+          # drop_shadow = true;
+          # shadow_range = 30;
+          # shadow_render_power = 3;
+          # "col.shadow" = "rgba(01010144)";
           
           # Dim
           dim_inactive = false;
@@ -195,9 +238,9 @@
           dim_special = 0;
       };
 
-      windowrule = [
-        "opacity 0.999,^(firefox)$"
-      ];
+      # windowrule = [
+      #   "opacity 0.999,^(firefox)$"
+      # ];
       
       
       animations = {
@@ -219,10 +262,11 @@
           animation = 
             [
               "windows, 1, 2, overshoot, slide"
-              "border, 1, 5, default"
+              "border, 1, 1, default"
               "workspaces, 1, 2, overshoot, slide"
               "fadeIn, 1, 5, md3_decel"
               "fadeOut, 1, 5, md3_decel"
+              "layers, 1, 0.2, default"
             ];
       
       };
@@ -272,10 +316,11 @@
           "nm-applet -sm-disable"
           "blueman-applet"
           "killall xfce4-notifyd"
-          "ags"
+          "ags run /etc/nixos/modules/home-manager/desktop/ags/app.ts"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "swww init"
-          "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/5.jpg"
+          # "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/13.jpg"
+          "/etc/nixos/modules/home-manager/desktop/wallpapers/change-wallpaper.sh 13"
           "nix-shell ~/programming/Music-Player/shell.nix"
         ];
 

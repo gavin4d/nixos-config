@@ -5,6 +5,7 @@
   ./obsidian
   ./wofi
   ./discord
+  ./signal
   ./blender
   ./icestorm
   ./kicad
@@ -13,6 +14,7 @@
   ./mpv
   ./okular
   ./octave
+  ./VM
   ./zoom
   ./spotify
   ./opentx
@@ -22,7 +24,8 @@
   ./minecraft
   ./filelight
   ./remoteDesktop
-  ./CCStudio
-  ./ELRS
+  # ./CCStudio
+  # ./ELRS
+  ./radio
 #  ./waveform
 ]

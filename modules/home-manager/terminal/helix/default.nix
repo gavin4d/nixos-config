@@ -2,7 +2,27 @@
 {
   home.packages = with pkgs; [
     helix
+    glibc
+    # llvmPackages_18.clang-unwrapped
     vscode-langservers-extracted
+    typescript-language-server
+    vhdl-ls
+    verible
+    svls
+    zls
+    nil
+    # python311Packages.python-lsp-server
+    nodePackages.bash-language-server
+    # typst-lsp
+    tinymist
+    typstyle
+    llvmPackages_latest.lldb
+    llvmPackages_latest.libllvm
+    llvmPackages_latest.libcxx
+    llvmPackages_latest.clang
+    clang-tools
+    stdmanpages
+    man-pages
   ];
   
   programs.helix = {
@@ -37,7 +57,9 @@
           };
         }
         {
-          name = "verilog";
+          name = "typescript";
+          file-types = ["tsx"];
+          language-servers = ["typescript-language-server"];
         }
       ];
     };

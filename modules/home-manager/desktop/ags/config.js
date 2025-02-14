@@ -1,10 +1,10 @@
-import { Bar } from "./modules/topbar.js";
-import Dashboard from "./modules/widgets/dashboard.js";
+import { Bar } from "./widget/topbar.js";
+import Dashboard from "./widget/widgets/dashboard.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
-import { VolumeOSD } from './modules/on-screen/volume.js'
+import { VolumeOSD } from './widget/on-screen/volume.js'
 import { exec, execAsync, timeout } from 'resource:///com/github/Aylur/ags/utils.js';
 import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
-import { notificationPopup } from './modules/on-screen/notificationPopup.js';
+import { notificationPopup } from './widget/on-screen/notificationPopup.js';
 
 const scss = `${App.configDir}/scss/main.scss`
 const css = `${App.configDir}/style.css`
