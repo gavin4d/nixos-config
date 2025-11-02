@@ -1,0 +1,13 @@
+backend = "full"
+color_space = "lch"
+palette = "dark"
+
+[templates]
+nix.template = 'colors-nix.conf'
+nix.target = '/etc/nixos/modules/home-manager/desktop/wallpapers/colors/color.yaml'
+
+ags.template = 'colors-ags.conf'
+ags.target = '/etc/nixos/modules/home-manager/desktop/ags/colors.scss'
+
+rofi.template = 'colors-rofi.conf'
+rofi.target = '/etc/nixos/modules/home-manager/desktop/launcher/color.rasi'

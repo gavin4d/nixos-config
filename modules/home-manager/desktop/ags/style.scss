@@ -1,0 +1,155 @@
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+@use 'sass:color';
+@use "./widget/Notification.scss";
+@use "./widget/MediaPlayer.scss";
+@use "colors";
+
+$margin: 0px 4px;
+$radius: 8px;
+
+window.Bar {
+  border: none;
+  box-shadow: none;
+  background-color: #00000000;
+  color: colors.$fg;
+  /* font-family: 'departureMono Nerd Font'; */
+  font-size: 1.1em;
+  font-weight: bold;
+  transition-duration: 10s;
+  transition-timing-function: linear;
+  margin-bottom: 30px;
+
+  label {
+    margin: 0 8px;
+  }
+
+  .Workspaces {
+
+    button {
+      all: unset;
+      background-color: color.adjust(colors.$fg, $alpha: -0.6);
+      min-width: 12px;
+      min-height: 12px;
+      margin: 8px 4px;
+      font-size: 0;
+      border-radius: 8px;
+      transition: 100ms linear;
+
+
+      /* &:hover label { */
+      /* background-color: color.adjust(colors.$fg, $alpha: -0.84); */
+      /* } */
+
+      /* &:active label { */
+      /* background-color: colors.$color4; */
+      /* } */
+
+      &.occupied {
+        background-color: colors.$fg;
+        min-width: 16px;
+        min-height: 16px;
+        margin: 6px 4px;
+
+      }
+    }
+
+    .focused>button {
+      background-color: colors.$color1;
+      min-width: 32px;
+      min-height: 16px;
+      margin: 6px 4px;
+    }
+
+
+    /* label { */
+    /* transition: 200ms; */
+    /* padding: 0 8px; */
+    /* margin: 2px; */
+    /* border-radius: $radius; */
+    /* border: 1pt solid transparent; */
+    /* } */
+
+    /* .focused label { */
+    /* background-color: $accent; */
+    /* min-height: 16px; */
+    /* min-width: 24px; */
+    /* } */
+
+    /* .occupied label { */
+    /* background-color: color.adjust(colors.$fg, $alpha: -0.2); */
+    /* min-height: 16px; */
+    /* min-width: 16px; */
+    /* } */
+  }
+
+  .SysTray {
+    margin-right: 8px;
+
+    button {
+      background-color: transparent;
+      padding: 0 4px;
+      min-height: 12px;
+      min-width: 16px;
+      border-radius: 8px;
+    }
+  }
+
+  .FocusedClient {
+    color: colors.$color1;
+  }
+
+  .Media .Cover {
+    min-height: 1.2em;
+    min-width: 1.2em;
+    border-radius: $radius;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .Battery {
+
+    label {
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+
+  .pill {
+    background-color: colors.$color1;
+    border-radius: 12px;
+    margin: 2px 4px;
+  }
+
+  .AudioSlider {
+    * {
+      all: unset;
+    }
+
+    icon {
+      margin-right: .6em;
+    }
+
+    & {
+      margin: 0 1em;
+    }
+
+    trough {
+      background-color: color.adjust(colors.$fg, $alpha: -0.8);
+      border-radius: $radius;
+    }
+
+    highlight {
+      background-color: colors.$color1;
+      min-height: .8em;
+      border-radius: $radius;
+    }
+
+    slider {
+      background-color: colors.$fg;
+      border-radius: $radius;
+      min-height: 1em;
+      min-width: 1em;
+      margin: -.2em;
+    }
+  }
+}

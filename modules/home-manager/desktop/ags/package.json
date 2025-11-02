@@ -1,0 +1,6 @@
+{
+    "name": "astal-shell",
+    "dependencies": {
+        "astal": "/home/gavin4d/.local/share/ags"
+    }
+}

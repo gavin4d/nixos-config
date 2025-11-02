@@ -1,0 +1,74 @@
+---
+name: build-packages
+
+on: push
+
+jobs:
+  build-libraries:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        pkg:
+          - adept2-runtime
+        nixpkgs_branch:
+          - nixos-unstable
+          - nixos-21.11
+        system:
+          - x86_64-linux
+          # - aarch64-linux
+
+    name: "Build library ${{ matrix.pkg }} for ${{ matrix.nixpkgs_branch }} on ${{ matrix.system }}"
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v16
+        with:
+          name: liff
+          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Build package ${{ matrix.pkg }}
+        run: |-
+          nix -L build \
+              --override-input nixpkgs github:nixos/nixpkgs/${{ matrix.nixpkgs_branch }} \
+              --system ${{ matrix.system }} \
+              .#${{ matrix.pkg }}
+
+  build-applications:
+    runs-on: ubuntu-20.04
+    needs: build-libraries
+
+    strategy:
+      matrix:
+        pkg:
+          - waveforms
+        nixpkgs_branch:
+          - nixos-unstable
+          - nixos-21.11
+        system:
+          - x86_64-linux
+          # - aarch64-linux
+
+    name: "Build application ${{ matrix.pkg }} for ${{ matrix.nixpkgs_branch }} on ${{ matrix.system }}"
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v16
+        with:
+          name: liff
+          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Build package ${{ matrix.pkg }}
+        run: |-
+          nix -L build \
+              --override-input nixpkgs github:nixos/nixpkgs/${{ matrix.nixpkgs_branch }} \
+              --system ${{ matrix.system }} \
+              .#${{ matrix.pkg }}
