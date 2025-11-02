@@ -1,7 +1,10 @@
-{config, pkgs, pkgs-stable, ...}: {
+{config, pkgs, ...}: {
 
   home.packages = [
-    pkgs-stable.steam
+    pkgs.steam
+    pkgs.legendary-gl
+    pkgs.heroic
+    pkgs.wine
     # steamPackages.steam-fhsenv-without-steam
     # pkgs-stable.steam-run
   ];

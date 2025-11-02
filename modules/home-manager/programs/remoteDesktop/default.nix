@@ -6,5 +6,6 @@
     openconnect
     networkmanager-openconnect
     glib-networking
+    x2goclient
   ];
 }

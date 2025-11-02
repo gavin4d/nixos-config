@@ -1,6 +1,7 @@
 {pkgs, inputs, ...}:
 {
   home.packages = with pkgs; [
+    kdePackages.dolphin
     hyprpicker
     swww
     upower
@@ -9,6 +10,7 @@
     lm_sensors
     sysstat
     networkmanagerapplet
+    wl-mirror
     # globalprotect-openconnect
 #    catppuccin
 #    catppuccin-gtk
@@ -20,14 +22,29 @@
     #libsForQt5.lightly
     lightly-qt
     nwg-look
+    helvum
   ];
 
-  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
-  
+  imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
+  ];
+
+ 
   #catppuccin.flavour = "mocha";
   #xdg.enable = true;
   #gtk = {
   #  enable = true;
   #  catppuccin.enable = true;
   #};
+
+  xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        # xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
+      ];
+  };
 }

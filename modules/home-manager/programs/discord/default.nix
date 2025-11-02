@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    vesktop
+    # vesktop
+    legcord
+    slack
   ];
   # programs.firefox = { 
   #   profiles.discord = {

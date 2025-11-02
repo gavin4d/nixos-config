@@ -12,6 +12,7 @@
     slurp
     brightnessctl
     wl-clipboard
+    killall
   ];
 
   gtk = {
@@ -98,10 +99,9 @@
 
       bind =
         [
-          ", $mainMod, workspace, 4"
-          
+         
           # shortcuts
-          "$mainMod, R, exec, wofi --show drun"
+          "$mainMod, R, exec, killall rofi || rofi -show drun"
 
           # window controls
           "$mainMod, Q, killactive"
@@ -133,6 +133,9 @@
           "$mainMod, Escape, workspace, previous"
 
           ", xf86Display, movecurrentworkspacetomonitor, +1"
+
+          "SHIFT, xf86monbrightnessup, exec, brightnessctl set 100%"
+          "SHIFT, xf86monbrightnessdown, exec, brightnessctl set 1"
 
           # volume controls
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -170,6 +173,8 @@
           # brightness controls
           ", xf86monbrightnessup, exec, brightnessctl set 5%+"
           ", xf86monbrightnessdown, exec, brightnessctl set 5%-"
+          "$mainMod, xf86monbrightnessup, exec, brightnessctl set 5%+"
+          "$mainMod, xf86monbrightnessdown, exec, brightnessctl set 5%-"
         ];
       bindi =
         [
@@ -196,10 +201,12 @@
       general = {
         gaps_in = 4;
         gaps_out = 6;
-        border_size = 2;
+        border_size = 0;
         # "col.active_border" = "rgba(a34b25FF)";
-        "col.active_border" = "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0F}) 45deg";
-        "col.inactive_border" = "rgb(${config.colorScheme.palette.base00})";
+        "col.active_border" = "rgba(000000FF)";
+        # "col.active_border" = "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0F}) 45deg";
+        # "col.inactive_border" = "rgb(${config.colorScheme.palette.base00})";
+        "col.inactive_border" = "rgba(00000000)";
         layout = "dwindle";
       };
 
@@ -238,9 +245,10 @@
           dim_special = 0;
       };
 
-      # windowrule = [
-      #   "opacity 0.999,^(firefox)$"
-      # ];
+      windowrule = [
+        # "opacity 0.999,^(firefox)$"
+        "noblur, class:Rofi"
+      ];
       
       
       animations = {
@@ -257,15 +265,16 @@
               "bounce, 0.4, 0.05, 0, 1.1"
               "test, 2, 1.25, -0.5, -1"
               "funky, 0.46, 0.35, -0.2, 1.2"
+              "ease-out-binbos, 0, 1, 0.5, 1"
             ];
           # Animation configs
           animation = 
             [
-              "windows, 1, 2, overshoot, slide"
-              "border, 1, 1, default"
-              "workspaces, 1, 2, overshoot, slide"
-              "fadeIn, 1, 5, md3_decel"
-              "fadeOut, 1, 5, md3_decel"
+              "windows, 1, 3, ease-out-binbos, popin"
+              "border, 1, 2, default"
+              "workspaces, 1, 3, ease-out-binbos, slide"
+              "fadeIn, 1, 3, default"
+              "fadeOut, 1, 3, default"
               "layers, 1, 0.2, default"
             ];
       
@@ -316,7 +325,7 @@
           "nm-applet -sm-disable"
           "blueman-applet"
           "killall xfce4-notifyd"
-          "ags run /etc/nixos/modules/home-manager/desktop/ags/app.ts"
+          # "ags run /etc/nixos/modules/home-manager/desktop/ags/app.ts"
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "swww init"
           # "swww img -t grow --transition-duration 1.5 /etc/nixos/modules/home-manager/desktop/wallpapers/13.jpg"

@@ -13,14 +13,14 @@ exec(`sassc ${scss} ${css}`)
 
 //execAsync(['swww', 'img', '~/Downloads/1291412.jpg']);
 
-timeout(1000, () => execAsync([
-    'notify-send',
-    'Notification Popup Example',
-    'Lorem ipsum dolor sit amet, qui minim labore adipisicing ' +
-    'minim sint cillum sint consectetur cupidatat.',
-    '-A', 'Cool!',
-    '-i', 'info-symbolic',
-]));
+// timeout(1000, () => execAsync([
+//     'notify-send',
+//     'Notification Popup Example',
+//     'Lorem ipsum dolor sit amet, qui minim labore adipisicing ' +
+//     'minim sint cillum sint consectetur cupidatat.',
+//     '-A', 'Cool!',
+//     '-i', 'info-symbolic',
+// ]));
 
 export default {
     style: App.configDir + '/style.css',

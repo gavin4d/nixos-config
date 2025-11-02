@@ -3,12 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      
+      ./modules/wireguard.nix
     ];
 
   # Bootloader.
@@ -22,19 +21,38 @@
   
   networking = {
     hostName = "nixos"; # Define your hostname.
-    # useDHCP = false;
+    # useDHCP = true;
     # interfaces.ens3.useDHCP = false;
-    nameservers = ["8.8.8.8" "1.1.1.1" "8.8.4.4"];
+    nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" ];
+    # nameservers = ["172.16.0.1"];
+    # "172.16.64.1"
     networkmanager = {
       enable = true;
-      #dns = "none";
+      # dns = "default";
     };
-    firewall.allowedTCPPortRanges = [
-      { from = 5001; to = 5001; }
-      { from = 8080; to = 8080; }
-      { from = 5201; to = 5201; }
-    ];
+    firewall = {
+      enable = false;
+      allowedTCPPortRanges = [
+        { from = 5001; to = 5001; } # music player
+        { from = 8080; to = 8085; } # website
+        { from = 5201; to = 5201; }
+        { from = 51820; to = 51820; } # wireguard
+      ];
+      allowedUDPPorts = [
+        53
+        5353
+      ];
+    };
   };
+
+# services.resolved = {
+#   enable = true;
+#   dnssec = "true";
+#   domains = [ "~." ];
+#   fallbackDns = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" ];
+#   dnsovertls = "true";
+# };
+
 #  networking.wireless = {
 #  	enable = true;  # Enables wireless support via wpa_supplicant.
 #	userControlled.enable = true;
@@ -46,6 +64,8 @@
 
   # Set your time zone.
   time.timeZone = "America/New_York";
+  # time.timeZone = "America/Los_Angeles";
+  # time.timeZone = "Pacific/Auckland";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -74,7 +94,7 @@
   users.users.gavin4d = {
     isNormalUser = true;
     description = "gavin ford";
-    extraGroups = [ "networkmanager" "wheel" "tty" "dialout" "usb" "plugdev"];
+    extraGroups = [ "scanner" "lp" "networkmanager" "wheel" "tty" "dialout" "usb" "plugdev"];
     packages = with pkgs; [];
   };
 
@@ -94,11 +114,13 @@
     glibc
     man-pages
     man-pages-posix
-    xdg-desktop-portal
+    # xdg-desktop-portal
     stdmanpages
     aspellDicts.en
-    epapirus-icon-theme
+    # epapirus-icon-theme
+    wireguard-tools
     # catppuccin-papirus-folders
+    networkmanager-openconnect
   ];
   
   environment.wordlist.enable = true;
@@ -118,6 +140,14 @@
       nasin-nanpa
       meslo-lgs-nf
       atkinson-hyperlegible
+      merriweather
+      nerd-fonts.departure-mono
+      nerd-fonts.fira-mono
+      nerd-fonts.symbols-only
+      nerd-fonts.dejavu-sans-mono
+      xkcd-font
+      texlivePackages.atkinson
+      charis-sil
       # opengothic
       # udev-gothic
       # yasashisa-gothic
@@ -138,11 +168,33 @@
       ];
     };
 
+    sane = {
+      enable = true; # enables support for SANE scanners
+      extraBackends = [ pkgs.epkowa ];
+      drivers.scanSnap.enable = true;
+    };
+
     rtl-sdr.enable = true;
+    hackrf.enable = true;
 
     enableAllFirmware = true;
 
-    bluetooth.enable = true;
+    xpad-noone.enable = true;
+    xpadneo.enable = true;
+    # xone.enable = true;
+
+    bluetooth = {
+      enable = true; # enables support for Bluetooth
+      powerOnBoot = true; # powers up the default Bluetooth controller on boot
+      settings = {
+        General = {
+          Privacy = "device";
+          JustWorksRepairing = "always";
+          Class = "0x000100";
+          FastConnectable = "true";
+        };
+      };
+    };
   };
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -158,6 +210,9 @@
 
   services = {
 
+    # automatic-timezoned.enable = true;
+    # zerotierone.enable = true;
+
     usbmuxd = {
       enable = true;
       package = pkgs.usbmuxd2;
@@ -170,6 +225,8 @@
       openFirewall = true;
     };
 
+    # pcscd.enable = true;
+    # pcscd.plugins = [ pkgs.acsccid ];
     
     pipewire = {
       enable = true;
@@ -185,20 +242,20 @@
     tlp = {
       enable = true;
       settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        # CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        # CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        # CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        # CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 60;
+        CPU_MAX_PERF_ON_BAT = 100;
 
         #Optional helps save long term battery health
-        # START_CHARGE_THRESH_BAT0 = 75; # 75 and bellow it starts to charge
-        # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+        START_CHARGE_THRESH_BAT0 = 85; # 75 and bellow it starts to charge
+        STOP_CHARGE_THRESH_BAT0 = 90; # 80 and above it stops charging
 
       };
     };
@@ -222,10 +279,17 @@
       enable = true;
       tod = {
         enable = true;
-        driver = pkgs.libfprint-2-tod1-vfs0090;
+        driver = pkgs.libfprint-2-tod1-goodix;
       };
     };
-    udev.packages = [ pkgs.rtl-sdr ];
+    
+    udev = {
+      packages = [ pkgs.rtl-sdr pkgs.hackrf pkgs.platformio-core.udev];
+      # extraRules = '' 
+      #   ${builtins.readFile ./modules/home-manager/programs/NFC/93-pn53x.rules}
+      # '';
+      extraRules = '' ATTRS{idVendor}=="072f", ATTRS{idProduct}=="2200", MODE="0664", GROUP="plugdev" '';
+    };
   };
 
   security.rtkit.enable = true;
@@ -245,11 +309,19 @@
 
   xdg.portal = {
     enable = true;
+    # extraPortals = with pkgs; [
+    #   # xdg-desktop-portal-wlr
+    #   xdg-desktop-portal-gtk
+    # ];
+    xdgOpenUsePortal = true;
+
     extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-kde
+      xdg-desktop-portal-hyprland
+      # xdg-desktop-portal-kde
+      kdePackages.xdg-desktop-portal-kde
       xdg-desktop-portal-gtk
     ];
+
     wlr = {
       enable = true;
       settings = {

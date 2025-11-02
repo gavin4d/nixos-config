@@ -4,5 +4,6 @@
   ./utils
   ./wallust
   ./launcher
+  ./wallpapers
   # ./fprintd
 ]

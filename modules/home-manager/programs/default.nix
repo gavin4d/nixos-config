@@ -1,9 +1,13 @@
 [
+  # ./NFC
+  ./age
+  ./arduino
+  ./fsae
   ./firefox
   ./MUD
   ./typst
   ./obsidian
-  ./wofi
+  # ./wofi
   ./discord
   ./signal
   ./blender
