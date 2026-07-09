@@ -1,13 +1,13 @@
 * {
     font:                        "JetBrains Mono Nerd Font 10";
-    background:                  #272324;
-    background-alt:              #706454;
-    foreground:                  #ECE7D3;
-    selected:                    #504871;
-    active:                      #CABB82;
-    urgent:                      #9A9EA1;
+    background:                  #123960;
+    background-alt:              #6D72AA;
+    foreground:                  #C2D4E0;
+    selected:                    #27629C;
+    active:                      #5085A5;
+    urgent:                      #976D9B;
 }
 
 imagebox {
-    background-image:            url("/etc/nixos/modules/home-manager/desktop/wallpapers/img/12.jpg", height);
+    background-image:            url("/etc/nixos/modules/home-manager/desktop/wallpapers/img/11.jpg", height);
 }

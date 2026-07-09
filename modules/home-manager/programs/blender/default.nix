@@ -2,11 +2,11 @@
 {
   home.packages = with pkgs; [
     blender
-    aseprite
     qcad
-    libsForQt5.kdenlive
+    kdePackages.kdenlive
     audacity
     bambu-studio
-    prusa-slicer
+    # aseprite
+    # prusa-slicer
   ];
 }

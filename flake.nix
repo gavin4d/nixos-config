@@ -65,7 +65,8 @@
       };
 
       homeConfigurations.gavin4d = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { inherit system;
+        };
 
         # pass inputs as specialArgs
         extraSpecialArgs = {

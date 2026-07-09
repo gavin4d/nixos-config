@@ -1,6 +1,7 @@
 {pkgs, inputs, ...}:
 {
   home.packages = with pkgs; [
+    tailscale
     kdePackages.dolphin
     hyprpicker
     swww
@@ -11,6 +12,7 @@
     sysstat
     networkmanagerapplet
     wl-mirror
+    qpwgraph
     # globalprotect-openconnect
 #    catppuccin
 #    catppuccin-gtk
@@ -18,11 +20,9 @@
 #    catppuccin-kvantum
 #    catppuccin-cursors
     dconf
-    qt6ct
+    qt6Packages.qt6ct
     #libsForQt5.lightly
-    lightly-qt
     nwg-look
-    helvum
   ];
 
   imports = [

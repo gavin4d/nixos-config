@@ -12,15 +12,15 @@
     zls
     nil
     # python311Packages.python-lsp-server
-    nodePackages.bash-language-server
+    # nodePackages.bash-language-server
     # typst-lsp
     tinymist
     typstyle
     llvmPackages_latest.lldb
     llvmPackages_latest.libllvm
     llvmPackages_latest.libcxx
-    llvmPackages_latest.clang
-    clang-tools
+    # llvmPackages_latest.clang
+    # clang-tools
     stdmanpages
     man-pages
   ];

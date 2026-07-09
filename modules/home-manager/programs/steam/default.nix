@@ -1,12 +1,16 @@
-{config, pkgs, ...}: {
+{config, pkgs, ...}:
+{
 
-  home.packages = [
-    pkgs.steam
-    pkgs.legendary-gl
-    pkgs.heroic
-    pkgs.wine
+  home.packages = with pkgs; [
+    steam
+    retroarch
+    legendary-gl
+    heroic
     # steamPackages.steam-fhsenv-without-steam
     # pkgs-stable.steam-run
+    # wineWowPackages.waylandFull
+    # freetype
+    # winepkg.wine64
   ];
   # programs.steam = {
   #   enable = true;

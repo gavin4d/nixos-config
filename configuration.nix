@@ -147,7 +147,9 @@
       nerd-fonts.dejavu-sans-mono
       xkcd-font
       texlivePackages.atkinson
-      charis-sil
+      charis
+      # liberation-fonts
+      # wine-fonts
       # opengothic
       # udev-gothic
       # yasashisa-gothic
@@ -162,8 +164,8 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         intel-ocl
-        vaapiIntel
-        vaapiVdpau
+        libva-vdpau-driver
+        intel-vaapi-driver
         libvdpau-va-gl
       ];
     };

@@ -4,6 +4,7 @@
     spotify
     spotify-player
     spotdl
+    slskd
     # cue
     # cmus
     # mp3blaster

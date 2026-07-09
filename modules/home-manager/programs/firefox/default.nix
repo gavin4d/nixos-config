@@ -33,7 +33,7 @@
   home.packages = with pkgs; [
     readability-cli
     ffsend
-    floorp
+    # floorp
     # pkgsOld.microsoft-edge
     microsoft-edge
   ];

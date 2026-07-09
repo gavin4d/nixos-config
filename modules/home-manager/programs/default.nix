@@ -1,5 +1,6 @@
 [
   # ./NFC
+  ./printer
   ./age
   ./arduino
   ./fsae
@@ -23,7 +24,7 @@
   ./spotify
   ./opentx
   ./steam
-  ./lmms
+  # ./lmms
   ./obs
   ./minecraft
   ./filelight

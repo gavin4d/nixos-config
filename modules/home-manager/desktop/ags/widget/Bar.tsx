@@ -66,6 +66,20 @@ function BatteryLevel() {
     </box>
 }
 
+// function CPULevel() {
+
+//     return <box className="pill">
+//         <label label={bind(bat, "energy-rate").as(v => `  ${Math.round(v*100)/100}W`)}/>
+//         <circularprogress value={} startAt={0} endAt={0}>
+//           <icon />
+//         </circularprogress>
+//         <icon icon={bind(bat, "batteryIconName")} />
+//         <label label={bind(bat, "percentage").as(p =>
+//             `${Math.floor(p * 100)}%`
+//         )} />
+//     </box>
+// }
+
 function Media() {
     const mpris = Mpris.get_default()
 

@@ -1,6 +1,10 @@
 {pkgs, ...}:
 {
   home.packages = with pkgs; [
+    can-utils
+    gnumake
+    rpiboot
+    csvlens
     inetutils
     nmap
     cmatrix
@@ -13,11 +17,15 @@
     qrencode
     http-server
     onedrivegui
-    poppler_utils
+    poppler-utils
+    ocamlPackages.cpdf
+    pdftk
+    ghostscript # ghost script
+    bc
     zip
     libimobiledevice
     # ventoy
-    eza
+    eza # better ls
     asuka
     lagrange
     amfora
@@ -29,7 +37,6 @@
     unzip
     usbutils
     neovim
-    neofetch
     gtop
     htop
     btop

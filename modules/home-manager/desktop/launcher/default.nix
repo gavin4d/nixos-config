@@ -6,6 +6,7 @@
     rofi-power-menu
     rofi-bluetooth
     # rofi-emoji
+    qalculate-qt
     clipmenu
   ];
   programs.rofi = {
