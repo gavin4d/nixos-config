@@ -1,6 +1,13 @@
 {pkgs, ...}:
 {
   home.packages = with pkgs; [
+    lpac
+    pcsclite
+    gtkdialog
+    uget
+    libx11
+    libqmi
+    # easylpac
     can-utils
     gnumake
     rpiboot

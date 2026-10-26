@@ -350,8 +350,6 @@
           "SHIFT, xf86monbrightnessdown, exec, brightnessctl set 1"
 
           # volume controls
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
           # applications
           "$mainMod, return, exec, kitty"
           ",Print, exec, grim -g \"$(slurp -d -c 00000000 -b 00aaaa22)\" - | wl-copy -t image/png"
@@ -381,6 +379,10 @@
           ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- "
           "$mainMod, xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           "$mainMod, xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- "
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+          "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          "$mainMod, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
           ", xf86audioplay, exec, playerctl play-pause"
           ", xf86audionext, exec, playerctl next"
@@ -465,7 +467,7 @@
         # "opacity 0.999,^(firefox)$"
         # "noblur, class:Rofi"
         "float on, match:class ^$" # fix microsoft-edge title attributes showing as windows
-        "float on, pin on, move (monitor_w-400) (monitor_h-225), size 400 225, match:title ^Picture in picture$"
+        "float on, pin on, move (monitor_w-512) (monitor_h-288), size 512 288, match:title ^Picture in picture$"
         # "pin on, match:title = Picture in picture"
   #     float = on
   #     pin = on

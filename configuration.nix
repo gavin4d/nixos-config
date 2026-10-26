@@ -121,6 +121,7 @@
     wireguard-tools
     # catppuccin-papirus-folders
     networkmanager-openconnect
+    linux-gpib
   ];
   
   environment.wordlist.enable = true;
@@ -220,7 +221,12 @@
       package = pkgs.usbmuxd2;
     };
     # Enable CUPS to print
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [
+        pkgs.cnijfilter2
+      ];
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;

@@ -32,7 +32,9 @@ let
 in
 {
   home.packages = with pkgs; [
-    kicad
+    (kicad.override {
+      compressStep = false;
+    })
     msitools
     freetype
     winepkg.wineWowPackages.stable
